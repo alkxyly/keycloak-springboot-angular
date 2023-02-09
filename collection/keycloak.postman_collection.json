@@ -1,0 +1,452 @@
+{
+	"info": {
+		"_postman_id": "89ff544f-dc30-4e9b-8c5a-09bab1b190d2",
+		"name": "keycloak",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "934226"
+	},
+	"item": [
+		{
+			"name": "endpoints",
+			"item": [
+				{
+					"name": "entry-point",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/auth/realms/master/.well-known/openid-configuration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"realms",
+								"master",
+								".well-known",
+								"openid-configuration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obter-token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "fred.flintstone",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "fred",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "client",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "51d999dd-a139-475a-86be-69aa6e000048",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:28080/auth/realms/master/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "28080",
+							"path": [
+								"auth",
+								"realms",
+								"master",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Heroes",
+			"item": [
+				{
+					"name": "obter token com usuario e senha",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "spa-heroes-backend",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "mDCNkdvNJFRYRfbqYlkJJlat7WxBuORi",
+									"type": "text"
+								},
+								{
+									"key": "response_type",
+									"value": "code",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "openid profile email offline_access heroes",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/realms/Heroes/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"realms",
+								"Heroes",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fildAllHeroes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJZaHZMVUxDSGw5UFBqeDlHNjVJbkoxWVdndEZReFVZdzlJNWI4N2JLN2hzIn0.eyJleHAiOjE2NzU5NzY2MjEsImlhdCI6MTY3NTk3NjMyMSwianRpIjoiNWY3ZDBkM2ItN2M5ZC00ZDNjLTg2OWEtYjY3NzhhMTViOTBlIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2F1dGgvcmVhbG1zL0hlcm9lcyIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiI3OTM4NzA2ZC1hMTE1LTRkYzAtOWRlOC04NDBlNjgxMzg5ZjQiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJzcGEtaGVyb2VzLWJhY2tlbmQiLCJzZXNzaW9uX3N0YXRlIjoiMzU0OGRjZTMtMDM0MS00OTUyLTkzNzctOWJjNzRlODJlN2UxIiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImFwcC1hZG1pbiIsImRlZmF1bHQtcm9sZXMtaGVyb2VzIiwidW1hX2F1dGhvcml6YXRpb24iLCJhcHAtdXNlciJdfSwicmVzb3VyY2VfYWNjZXNzIjp7InNwYS1oZXJvZXMtYmFja2VuZCI6eyJyb2xlcyI6WyJoZXJvZXMtdXNlciIsImhlcm9lcy1hZG1pbiJdfSwiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiMzU0OGRjZTMtMDM0MS00OTUyLTkzNzctOWJjNzRlODJlN2UxIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsIm5hbWUiOiJBZG1pbiIsInByZWZlcnJlZF91c2VybmFtZSI6ImFkbWluIiwiZ2l2ZW5fbmFtZSI6IkFkbWluIiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20ifQ.EI08Tibq_8clkGMG7Mm_ks86e2xExw0jz6Gk8uzszRj3ReISeRy2Hjxd9WysA3rSN3WF1_PXLNP3MAL1hPeWUD6-81mIfAPilZpvlidjX_KoLSkF3fPytI8l8GVFdr6Bp9rMk0MaYGjwaLttzYaiykFf4g4OXUgYRA8dCVbWefL1ilic1SblwD7zCAwXreSHxgYppFoUsgicv4TbipSKEI6Ku8xCP2L71W24WHd63bDsd-kzptX9ElS0iLMe6O1nbVw6VPOHlI1_dribdj7yQzJcyaO7ZlyFe8OKhE3YdCawFT7dA2V7yvltESkZz8wYxB10icdtWnyAwddQC6kQWQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9090/api/heroes",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"heroes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "api-keycloak",
+			"item": [
+				{
+					"name": "20.0.3",
+					"item": [
+						{
+							"name": "user",
+							"item": [
+								{
+									"name": "obter usuários",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIxaUlRc3pnY19lX0xLNnhlRUpYVlNWQjBqMVhwLTZFaUVDeFpoeExGbXQwIn0.eyJleHAiOjE2NzU5NzQ3NzEsImlhdCI6MTY3NTk3NDcxMSwianRpIjoiNzc1NzcxZjgtNzc1Yi00ZGYzLTlhMTktNmZhZmExOWQxYjkyIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2F1dGgvcmVhbG1zL21hc3RlciIsInN1YiI6IjhhYTgzODI4LTI3MzEtNDNlNC1iNTgwLWJkODU2NjE0NWMzYyIsInR5cCI6IkJlYXJlciIsImF6cCI6ImFkbWluLWNsaSIsInNlc3Npb25fc3RhdGUiOiJjNDRkNmIxOS0wMGVmLTQ0ZWMtYjY2MS1mYTg2MmNmZTY4OTIiLCJhY3IiOiIxIiwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiYzQ0ZDZiMTktMDBlZi00NGVjLWI2NjEtZmE4NjJjZmU2ODkyIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhZG1pbiJ9.NS7IKA78JpyFAOOqsnLo1QmiTYqS45TbNQiitl6FSACHfLNwy6xRAsJpLi2TqB7_3rtciF660ldhf2URbxawjmHJ_eMa_UMHJ-yIjB3EcV9BIwGT2mMPhjwPymP8lDi3TdkI4ApgPP-Zn0A7ChL3YZBAaXGvSy2akZsUagNCzSuYkwoEZ1WlMoH5Ped13FmimAWPKFDCbemngy1bYravpjs7x2xziqkmw73k0hwBD3MflgLqo1pSjj8fz3n5t9vgazViCORhkk4_dIayoHv_6oKbftjTiXZwjulByhmjgciHBOGRLSKMGF2_HwiuEzu_4innkxhNNyPFi-tnyCcYYw",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/auth/admin/realms/Heroes/users",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"auth",
+												"admin",
+												"realms",
+												"Heroes",
+												"users"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obter usuário por id",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIxaUlRc3pnY19lX0xLNnhlRUpYVlNWQjBqMVhwLTZFaUVDeFpoeExGbXQwIn0.eyJleHAiOjE2NzU5NzYwNzEsImlhdCI6MTY3NTk3NjAxMSwianRpIjoiY2Q5NjJiNjgtNmJiOS00ZGM3LWE1YmUtZTFkMzQ4MzNkMTBmIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2F1dGgvcmVhbG1zL21hc3RlciIsInN1YiI6IjhhYTgzODI4LTI3MzEtNDNlNC1iNTgwLWJkODU2NjE0NWMzYyIsInR5cCI6IkJlYXJlciIsImF6cCI6ImFkbWluLWNsaSIsInNlc3Npb25fc3RhdGUiOiIyNjljMzM3My1hOGU0LTRhNmMtYWRmYi0wMjMxNDE5ODVkNGIiLCJhY3IiOiIxIiwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiMjY5YzMzNzMtYThlNC00YTZjLWFkZmItMDIzMTQxOTg1ZDRiIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhZG1pbiJ9.rHKMR4oU-PzAj3IbrZ7ipIfWstbxCWaftiUpB3kG90xYyeBeTHI3aQUklYe0MDEDyax3gHfhTd_NPiAQugdG0IJyrxVdqX2YB2gCYa_KNecD5F8i_txGeoAcSrHkdmAzB9ZjiNRD6vAsvdUVc9ITQUhIxzu8oWOjKTfdNORAk7lzMvMAnlodYjnEk7l28sQDlzSAi2J332YFZvE_-7XNZpP6KvDPZYtrR3hvGkNEW1HrF6HAdjBsmQndhOelk8hQhjbQ5U0YAyyZLsdLnewyXkU8sdDF8fIyBQqWZGvUbp3vcE5OY8yE6XaS2s3H1Qcia0T3SIPrUaJ2f7Ro7o4VnA",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/auth/admin/realms/Heroes/users/7938706d-a115-4dc0-9de8-840e681389f4",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"auth",
+												"admin",
+												"realms",
+												"Heroes",
+												"users",
+												"7938706d-a115-4dc0-9de8-840e681389f4"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obter usuário por id Copy",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIxaUlRc3pnY19lX0xLNnhlRUpYVlNWQjBqMVhwLTZFaUVDeFpoeExGbXQwIn0.eyJleHAiOjE2NzU5NzYwNzEsImlhdCI6MTY3NTk3NjAxMSwianRpIjoiY2Q5NjJiNjgtNmJiOS00ZGM3LWE1YmUtZTFkMzQ4MzNkMTBmIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2F1dGgvcmVhbG1zL21hc3RlciIsInN1YiI6IjhhYTgzODI4LTI3MzEtNDNlNC1iNTgwLWJkODU2NjE0NWMzYyIsInR5cCI6IkJlYXJlciIsImF6cCI6ImFkbWluLWNsaSIsInNlc3Npb25fc3RhdGUiOiIyNjljMzM3My1hOGU0LTRhNmMtYWRmYi0wMjMxNDE5ODVkNGIiLCJhY3IiOiIxIiwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiMjY5YzMzNzMtYThlNC00YTZjLWFkZmItMDIzMTQxOTg1ZDRiIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhZG1pbiJ9.rHKMR4oU-PzAj3IbrZ7ipIfWstbxCWaftiUpB3kG90xYyeBeTHI3aQUklYe0MDEDyax3gHfhTd_NPiAQugdG0IJyrxVdqX2YB2gCYa_KNecD5F8i_txGeoAcSrHkdmAzB9ZjiNRD6vAsvdUVc9ITQUhIxzu8oWOjKTfdNORAk7lzMvMAnlodYjnEk7l28sQDlzSAi2J332YFZvE_-7XNZpP6KvDPZYtrR3hvGkNEW1HrF6HAdjBsmQndhOelk8hQhjbQ5U0YAyyZLsdLnewyXkU8sdDF8fIyBQqWZGvUbp3vcE5OY8yE6XaS2s3H1Qcia0T3SIPrUaJ2f7Ro7o4VnA",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "localhost:8080/auth/admin/realms/Heroes/users/7938706d-a115-4dc0-9de8-840e681389f4",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"auth",
+												"admin",
+												"realms",
+												"Heroes",
+												"users",
+												"7938706d-a115-4dc0-9de8-840e681389f4"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "group",
+							"item": [
+								{
+									"name": "cadastrar grupo",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIxaUlRc3pnY19lX0xLNnhlRUpYVlNWQjBqMVhwLTZFaUVDeFpoeExGbXQwIn0.eyJleHAiOjE2NzU5NzUwMDYsImlhdCI6MTY3NTk3NDk0NiwianRpIjoiYzZhNGQ1OGQtNzlmNC00MzIyLWJmNjAtZGJjZDFiYzg2Y2Q1IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2F1dGgvcmVhbG1zL21hc3RlciIsInN1YiI6IjhhYTgzODI4LTI3MzEtNDNlNC1iNTgwLWJkODU2NjE0NWMzYyIsInR5cCI6IkJlYXJlciIsImF6cCI6ImFkbWluLWNsaSIsInNlc3Npb25fc3RhdGUiOiJkYWI4ZWRhOC05MThiLTQxZjgtOTQ0NC0xNjgyOWYwMGFkZGQiLCJhY3IiOiIxIiwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiZGFiOGVkYTgtOTE4Yi00MWY4LTk0NDQtMTY4MjlmMDBhZGRkIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhZG1pbiJ9.T1WTArCyjOihXcYD6rI-1pjWLqz1X1IwhcReP_mxkLowFFeNG7YWiUqzcRMfOUQejA6Q2oejegpcAxzWuvRbamozLEwKsRFTvbW_nFwiV-_NjEwZr15PVNS2IMJ2J_7WQ-IXuo0qOl1Pedhta6_5QTxkvcw2lkG7ThxhFQnSDoJFzEyBg6xE1dIEu7jQaVVh1qIpRf63wIMQoP0l5NbxlZlxJva9WLq8qQZeGMhvqVK-xdve2n-ozXSk5ag5YicEo172GRgriii9upy20kONtPCPobTwdqA_Ct2ojEzDYyTCDNHzg0UZKtDNxOMi952Qhbvw0t85nIg6msh8s74zlg",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"grupo-rest-api\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/auth/admin/realms/Heroes/groups",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"auth",
+												"admin",
+												"realms",
+												"Heroes",
+												"groups"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "obter grupos",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIxaUlRc3pnY19lX0xLNnhlRUpYVlNWQjBqMVhwLTZFaUVDeFpoeExGbXQwIn0.eyJleHAiOjE2NzU5NzU3ODEsImlhdCI6MTY3NTk3NTcyMSwianRpIjoiZjg4YzE2OWMtOTJjZS00NjkxLWI3MzAtYmIxYTdhYzk5NWFmIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL2F1dGgvcmVhbG1zL21hc3RlciIsInN1YiI6IjhhYTgzODI4LTI3MzEtNDNlNC1iNTgwLWJkODU2NjE0NWMzYyIsInR5cCI6IkJlYXJlciIsImF6cCI6ImFkbWluLWNsaSIsInNlc3Npb25fc3RhdGUiOiJlMmQ0YmZkMC05NzczLTRjNmQtOGUyZS02ZGM4YTRhOWJhZWUiLCJhY3IiOiIxIiwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwic2lkIjoiZTJkNGJmZDAtOTc3My00YzZkLThlMmUtNmRjOGE0YTliYWVlIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhZG1pbiJ9.MLBEaahlDppzxDrQ3ZNDfDnHD6u-4O2hVA3ITBg3DMCoeCIuvAeZHfwEnfkvBgDwQNGPzP3s-1p7qFcA4BaOWGNsC5swBgpNfPtfMmNxkVegp9pb528uFG8hQypShOlwNwcsGCOCXJbFT_p3_hsRFV6x0sMi_N7CFW4uz5YGI8Hb-J12oYiK45rp6_GibwyN1BPIGe9ga5zDsVzPteiQBFnsAlUo0ru6c_lHtFN4b-95CUuaY_arjPteWVZGiqQ2p8qIqozYFlXDKtswVarO7qdMORd3IHpZvi2EV5WfMHfndlY8IschnNQGe8XdvtfalIjKETBygVa3xzcIsUZ5iA",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/auth/admin/realms/Heroes/groups",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"auth",
+												"admin",
+												"realms",
+												"Heroes",
+												"groups"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "obter token admin-cli",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "admin-cli",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "admin",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "admin",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "mDCNkdvNJFRYRfbqYlkJJlat7WxBuORi",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "response_type",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "scope",
+											"value": "openid ",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/auth/realms/master/protocol/openid-connect/token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"auth",
+										"realms",
+										"master",
+										"protocol",
+										"openid-connect",
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
